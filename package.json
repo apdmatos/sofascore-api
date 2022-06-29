@@ -2,8 +2,10 @@
   "name": "sofascore-api",
   "version": "1.0.0",
   "description": "This module implements APIs to access [sofascore](http://sofascore.com). Sofascore has a lot of data and in play statistics we will try to document here.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
