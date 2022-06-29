@@ -1,0 +1,28 @@
+{
+  "name": "sofascore-api",
+  "version": "1.0.0",
+  "description": "This module implements APIs to access [sofascore](http://sofascore.com). Sofascore has a lot of data and in play statistics we will try to document here.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apdmatos/sofascore-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apdmatos/sofascore-api/issues"
+  },
+  "homepage": "https://github.com/apdmatos/sofascore-api#readme",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/emojione": "^2.2.6",
+    "emojione": "^4.5.0"
+  }
+}
