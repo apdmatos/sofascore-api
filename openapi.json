@@ -1,0 +1,260 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is the documentation for the unofficial sofascore api \nbeing used by the sofascore website\n",
+    "version": "1.0.0",
+    "title": "Sofascore api",
+    "contact": {
+      "email": "apdmatos@gmail.com"
+    },
+    "license": {
+      "name": "MIT License"
+    }
+  },
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://virtserver.swaggerhub.com/APDMATOS_1/sofascore-api/1.0.0"
+    },
+    {
+      "url": "https://api.sofascore.com/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "tournements",
+      "description": "Tournement data"
+    },
+    {
+      "name": "categories",
+      "description": "Category data"
+    }
+  ],
+  "paths": {
+    "/config/unique-tournaments/{language}/{sport}": {
+      "get": {
+        "tags": [
+          "tournements"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "The language to get data. pt, en, ...",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sport",
+            "in": "path",
+            "description": "The sport to get data from",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "football",
+                "basketball",
+                "tennis"
+              ]
+            }
+          }
+        ],
+        "summary": "Gets all the tournements",
+        "operationId": "getTournements",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TournementList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/sport/{sport}/categories": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "parameters": [
+          {
+            "name": "sport",
+            "in": "path",
+            "description": "The sport to get data from",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "football",
+                "basketball",
+                "tennis"
+              ]
+            }
+          }
+        ],
+        "summary": "Gets all the categories",
+        "operationId": "getCategories",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Sofascore",
+    "url": "https://www.sofascore.com"
+  },
+  "components": {
+    "schemas": {
+      "TournementList": {
+        "type": "object",
+        "properties": {
+          "uniqueTournaments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tournement"
+            }
+          },
+          "topUniqueTournamentIds": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "example": [
+                1,
+                2,
+                3
+              ]
+            }
+          }
+        }
+      },
+      "CategoryList": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Northern Ireland"
+                },
+                "slug": {
+                  "type": "string",
+                  "example": "northern-ireland"
+                },
+                "flag": {
+                  "type": "string",
+                  "example": "northern-ireland"
+                },
+                "sport": {
+                  "$ref": "#/components/schemas/Sport"
+                },
+                "priority": {
+                  "type": "number",
+                  "example": 0
+                },
+                "alpha2": {
+                  "type": "string",
+                  "example": "NX"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Tournement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "European Championship"
+          },
+          "slug": {
+            "type": "string",
+            "example": "european-championship"
+          },
+          "category": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "example": "Europe"
+              },
+              "slug": {
+                "type": "string",
+                "example": "europe"
+              },
+              "flag": {
+                "type": "string",
+                "example": "europe"
+              },
+              "sport": {
+                "$ref": "#/components/schemas/Sport"
+              },
+              "userCount": {
+                "type": "number",
+                "example": 498017
+              },
+              "displayInverseHomeAwayTeams": {
+                "type": "boolean",
+                "example": false
+              }
+            }
+          }
+        }
+      },
+      "Sport": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Football"
+          },
+          "slug": {
+            "type": "string",
+            "example": "football"
+          }
+        }
+      }
+    }
+  }
+}
